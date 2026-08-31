@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <g fill="none" stroke="#ff6a00" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Steam Lines (Subtle Code-like Curves) -->
-    <path d="M 190,135 C 175,100 210,75 195,40" stroke-width="28" />
-    <path d="M 280,135 C 265,100 300,75 285,40" stroke-width="28" />
+  <g fill="none" stroke="#ff6a00" stroke-linecap="round" stroke-linejoin="round" stroke-width="28">
+    <!-- Steam Lines -->
+    <path d="M 190,135 C 175,100 210,75 195,40" />
+    <path d="M 280,135 C 265,100 300,75 285,40" />
     
     <!-- Cup Top Rim -->
-    <path d="M 110,180 H 370" stroke-width="28" />
+    <path d="M 110,180 H 370" />
     
-    <!-- Cup Body -->
-    <path d="M 130,180 L 140,310 C 145,365 190,400 240,400 C 290,400 335,365 340,310 L 350,180 Z" stroke-width="28" fill="#ff6a00" fill-opacity="0.1" />
+    <!-- Cup Body (fill="none") -->
+    <path d="M 130,180 L 140,310 C 145,365 190,400 240,400 C 290,400 335,365 340,310 L 350,180 Z" fill="none" />
     
     <!-- Cup Handle -->
-    <path d="M 345,215 C 415,215 425,255 425,275 C 425,300 405,335 340,335" stroke-width="28" />
+    <path d="M 345,215 C 415,215 425,255 425,275 C 425,300 405,335 340,335" />
     
     <!-- Saucer / Base -->
-    <path d="M 120,450 H 360" stroke-width="28" />
+    <path d="M 120,450 H 360" />
   </g>
 </svg>
