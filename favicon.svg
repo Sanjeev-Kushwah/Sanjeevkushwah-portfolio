@@ -1,35 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#18181b" />
-      <stop offset="100%" stop-color="#09090b" />
-    </linearGradient>
-    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff6a00" />
-      <stop offset="100%" stop-color="#e85d00" />
-    </linearGradient>
-  </defs>
-  
-  <!-- Outer Dark Card -->
-  <rect width="512" height="512" rx="128" fill="url(#cardGrad)" />
-  
-  <!-- Accent Outer Ring -->
-  <rect x="12" y="12" width="488" height="488" rx="116" fill="none" stroke="url(#brandGrad)" stroke-width="12" stroke-opacity="0.9" />
-  
-  <!-- Left Bracket { -->
-  <path d="M 140,160 C 140,140 120,130 95,130 L 95,160 C 105,160 115,165 115,185 L 115,225 C 115,240 100,248 85,256 C 100,264 115,272 115,287 L 115,327 C 115,347 105,352 95,352 L 95,382 C 120,382 140,372 140,352 L 140,305 C 140,295 148,290 160,288 L 160,264 C 148,262 140,257 140,247 Z" fill="url(#brandGrad)" />
-  
-  <!-- Right Bracket } -->
-  <path d="M 372,160 C 372,140 392,130 417,130 L 417,160 C 407,160 397,165 397,185 L 397,225 C 397,240 412,248 427,256 C 412,264 397,272 397,287 L 397,327 C 397,347 407,352 417,352 L 417,382 C 392,382 372,372 372,352 L 372,305 C 372,295 364,290 352,288 L 352,264 C 364,262 372,257 372,247 Z" fill="url(#brandGrad)" />
-  
-  <!-- Initials SK -->
-  <g fill="#ffffff">
-    <!-- S -->
-    <path d="M 185,200 C 185,172 205,160 232,160 C 258,160 276,172 280,195 L 250,199 C 248,187 241,182 231,182 C 220,182 211,187 211,198 C 211,207 220,212 238,217 C 263,224 282,234 282,263 C 282,292 258,304 230,304 C 200,304 182,289 178,262 L 208,258 C 211,274 221,283 232,283 C 244,283 254,277 254,265 C 254,253 243,248 226,243 C 200,235 185,226 185,200 Z" />
-    <!-- K -->
-    <path d="M 298,163 L 326,163 L 326,215 L 354,163 L 388,163 L 350,227 L 390,301 L 356,301 L 326,242 L 326,301 L 298,301 Z" />
+  <g fill="none" stroke="#ff6a00" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Steam Lines (Subtle Code-like Curves) -->
+    <path d="M 190,135 C 175,100 210,75 195,40" stroke-width="28" />
+    <path d="M 280,135 C 265,100 300,75 285,40" stroke-width="28" />
+    
+    <!-- Cup Top Rim -->
+    <path d="M 110,180 H 370" stroke-width="28" />
+    
+    <!-- Cup Body -->
+    <path d="M 130,180 L 140,310 C 145,365 190,400 240,400 C 290,400 335,365 340,310 L 350,180 Z" stroke-width="28" fill="#ff6a00" fill-opacity="0.1" />
+    
+    <!-- Cup Handle -->
+    <path d="M 345,215 C 415,215 425,255 425,275 C 425,300 405,335 340,335" stroke-width="28" />
+    
+    <!-- Saucer / Base -->
+    <path d="M 120,450 H 360" stroke-width="28" />
   </g>
-  
-  <!-- Java Coffee Flame / Spring Dot Accent -->
-  <circle cx="256" cy="340" r="12" fill="url(#brandGrad)" />
 </svg>
