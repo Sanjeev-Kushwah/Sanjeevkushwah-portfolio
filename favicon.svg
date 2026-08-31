@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a00" />
+      <stop offset="100%" stop-color="#e85d00" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bgGrad)" />
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="6" />
+  <g fill="url(#textGrad)">
+    <path d="M 125,185 C 125,145 160,130 205,130 C 250,130 280,148 285,180 L 240,186 C 237,168 220,160 203,160 C 185,160 168,168 168,183 C 168,197 182,204 212,212 C 255,224 288,238 288,284 C 288,330 248,350 200,350 C 150,350 118,328 112,286 L 158,280 C 162,305 180,320 202,320 C 222,320 241,310 241,291 C 241,274 225,266 195,258 C 152,246 125,230 125,185 Z" />
+    <path d="M 310,135 L 354,135 L 354,215 L 400,135 L 452,135 L 392,232 L 456,345 L 402,345 L 354,252 L 354,345 L 310,345 Z" />
+  </g>
+  <circle cx="450" cy="335" r="14" fill="#ffffff" />
+</svg>
