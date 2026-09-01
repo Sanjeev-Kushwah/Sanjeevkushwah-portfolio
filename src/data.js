@@ -101,7 +101,8 @@ export const certifications = [
   {
     title: 'Alpha – Data Structures & Algorithms with Java',
     issuer: 'Apna College',
-    detail: 'Certificate of Completion (Data Structures and Algorithms using Java)',
-    link: 'https://www.linkedin.com/in/sanjeev-kushwah/',
+    credentialId: '692e610a5f6fe6375d0de2a9',
+    detail: 'Complete Data Structures & Algorithms in Java (Arrays, Linked Lists, Trees, Graphs, Dynamic Programming, and Problem Solving)',
+    image: '/certificate-dsa-java.jpg',
   },
 ]
