@@ -94,7 +94,8 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center group" aria-label="Sanjeev Kushwah Home">
+        <Link to="/" className="flex items-center gap-2.5 group" aria-label="Sanjeev Kushwah Home">
+          <img src="/logo.png" alt="Sanjeev Kushwah Logo" className="w-8 h-8 rounded-full ring-2 ring-brand/40 transition-transform group-hover:scale-105" />
           <span className="font-bold tracking-tight text-light-text dark:text-dark-text text-base md:text-lg">
             Sanjeev Kushwah
           </span>
