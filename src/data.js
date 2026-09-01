@@ -76,16 +76,32 @@ export const projects = [
 
 export const education = [
   {
+    degree: 'Master of Computer Applications (MCA)',
+    field: 'Computer Programming & Software Applications',
+    institution: 'Vikrant University, Gwalior',
+    period: 'Jul 2025 – Jul 2027',
+    grade: '8.5 CGPA',
+    status: 'Currently Pursuing',
+    details:
+      'Focusing on Java, Data Structures & Algorithms, Backend Development, Spring Boot, REST APIs, and Relational Database Systems.',
+  },
+  {
     degree: 'Bachelor of Computer Applications (BCA)',
-    period: '2022 – 2025',
-    institution: 'Makhanlal Chaturvedi National University of Journalism and Communication',
+    field: 'Computer Applications',
+    institution: 'Makhanlal Chaturvedi National University of Journalism and Communication, Bhopal',
+    period: 'Jul 2022 – Jul 2025',
+    grade: '7.5 CGPA',
+    status: 'Graduated',
+    details:
+      'Gained strong foundation in Computer Science, Object-Oriented Programming, Core Java, Database Management, and Web Technologies.',
   },
 ]
 
 export const certifications = [
   {
-    title: 'Alpha – DSA with Java',
+    title: 'Alpha – Data Structures & Algorithms with Java',
     issuer: 'Apna College',
     detail: 'Certificate of Completion (Data Structures and Algorithms using Java)',
+    link: 'https://www.linkedin.com/in/sanjeev-kushwah/',
   },
 ]
