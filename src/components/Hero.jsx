@@ -61,6 +61,8 @@ export default function Hero() {
             <a
               href="/resume.pdf"
               download="Sanjeev_Kushwah_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand/10 border border-brand/30 text-brand font-medium text-sm hover:bg-brand hover:text-white transition-all duration-200 hover:-translate-y-0.5"
             >
               <FileText className="w-4 h-4" /> Download Resume

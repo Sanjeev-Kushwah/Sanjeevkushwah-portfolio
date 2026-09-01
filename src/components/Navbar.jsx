@@ -123,6 +123,8 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             download="Sanjeev_Kushwah_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand/10 border border-brand/25 text-brand text-xs font-semibold hover:bg-brand hover:text-white transition-all duration-150"
           >
             <FileText className="w-3.5 h-3.5" /> Resume
@@ -143,6 +145,8 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             download="Sanjeev_Kushwah_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-brand/10 border border-brand/20 text-brand text-xs font-semibold"
           >
             Resume
