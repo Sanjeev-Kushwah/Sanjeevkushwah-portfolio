@@ -41,13 +41,15 @@ export default function Navbar() {
       }
     }
 
-    if (typeof document === 'undefined' || !document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Respect user prefers-reduced-motion setting
+    if (typeof document === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       applyTheme()
       return
     }
 
-    let x = window.innerWidth / 2
-    let y = 0
+    // Get exact button center position
+    let x = window.innerWidth - 48
+    let y = 32
     if (event && event.currentTarget) {
       const rect = event.currentTarget.getBoundingClientRect()
       x = rect.left + rect.width / 2
@@ -57,31 +59,57 @@ export default function Navbar() {
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
-    )
+    ) + 20
 
-    const transition = document.startViewTransition(() => {
+    // Modern View Transitions API with liquid ripple clip-path
+    if (document.startViewTransition) {
+      const transition = document.startViewTransition(() => {
+        applyTheme()
+      })
+
+      transition.ready.then(() => {
+        const clipPath = [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${endRadius}px at ${x}px ${y}px)`
+        ]
+
+        document.documentElement.animate(
+          {
+            clipPath: nextDark ? clipPath : clipPath.slice().reverse()
+          },
+          {
+            duration: 650,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            pseudoElement: nextDark
+              ? '::view-transition-new(root)'
+              : '::view-transition-old(root)'
+          }
+        )
+      })
+      return
+    }
+
+    // Fallback circular bubble overlay animation for browsers without startViewTransition
+    const overlay = document.createElement('div')
+    overlay.className = 'theme-bubble-overlay'
+    overlay.style.backgroundColor = nextDark ? '#0b0f19' : '#ffffff'
+    overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`
+    document.body.appendChild(overlay)
+
+    // Force reflow
+    void overlay.offsetWidth
+
+    overlay.style.clipPath = `circle(${endRadius}px at ${x}px ${y}px)`
+
+    setTimeout(() => {
       applyTheme()
-    })
-
-    transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`
-      ]
-
-      document.documentElement.animate(
-        {
-          clipPath: nextDark ? clipPath : clipPath.slice().reverse()
-        },
-        {
-          duration: 450,
-          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          pseudoElement: nextDark
-            ? '::view-transition-new(root)'
-            : '::view-transition-old(root)'
+      overlay.style.opacity = '0'
+      setTimeout(() => {
+        if (overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay)
         }
-      )
-    })
+      }, 150)
+    }, 600)
   }
 
   return (

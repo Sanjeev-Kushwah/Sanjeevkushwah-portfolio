@@ -26,11 +26,11 @@ export default {
           border: '#e5e7eb',
         },
         dark: {
-          bg: '#000000',
-          card: '#111111',
-          text: '#f9fafb',
-          muted: '#9ca3af',
-          border: '#333333',
+          bg: '#0b0f19',
+          card: '#131a29',
+          text: '#f8fafc',
+          muted: '#94a3b8',
+          border: '#1e293b',
         },
       },
       fontFamily: {

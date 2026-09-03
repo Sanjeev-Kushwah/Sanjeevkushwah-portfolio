@@ -32,7 +32,7 @@ html, body {
   animation: float 6s ease-in-out infinite;
 }
 
-/* Circular Reveal (Radial Reveal) View Transitions */
+/* Circular Reveal (Radial Reveal / Liquid Ripple) View Transitions */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -53,4 +53,13 @@ html, body {
 
 .dark::view-transition-new(root) {
   z-index: 1;
+}
+
+/* Fallback Theme Bubble Overlay for older browsers */
+.theme-bubble-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: clip-path 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
