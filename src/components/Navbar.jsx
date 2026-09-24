@@ -126,16 +126,9 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 group" aria-label="Sanjeev Kushwah Home">
-          <motion.img
-            whileHover={{ scale: 1.08, rotate: 3 }}
-            transition={{ duration: 0.2 }}
-            src="/logo.png"
-            alt="Sanjeev Kushwah Logo"
-            className="w-8 h-8 rounded-full ring-2 ring-brand/40"
-          />
-          <span className="font-bold tracking-tight text-light-text dark:text-dark-text text-base md:text-lg">
-            Sanjeev Kushwah
+        <Link to="/" className="flex items-center group" aria-label="Sanjeev Kushwah Home">
+          <span className="font-mono font-bold tracking-tight text-light-text dark:text-dark-text text-base md:text-lg group-hover:text-brand transition-colors">
+            &lt; Sanjeev K /&gt;
           </span>
         </Link>
 
