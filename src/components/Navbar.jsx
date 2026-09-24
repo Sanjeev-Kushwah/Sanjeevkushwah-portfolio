@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { Sun, Moon, Menu, X, FileText } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { Sun, Moon, FileText, Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 
 const navLinks = [
   { label: 'About', path: '/about' },
@@ -113,7 +114,10 @@ export default function Navbar() {
   }
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0, y: -15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-0 inset-x-0 z-50 h-16 transition-all duration-200 ${
         scrolled
           ? 'bg-light-bg/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-light-border dark:border-dark-border shadow-xs'
@@ -123,7 +127,13 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2.5 group" aria-label="Sanjeev Kushwah Home">
-          <img src="/logo.png" alt="Sanjeev Kushwah Logo" className="w-8 h-8 rounded-full ring-2 ring-brand/40 transition-transform group-hover:scale-105" />
+          <motion.img
+            whileHover={{ scale: 1.08, rotate: 3 }}
+            transition={{ duration: 0.2 }}
+            src="/logo.png"
+            alt="Sanjeev Kushwah Logo"
+            className="w-8 h-8 rounded-full ring-2 ring-brand/40"
+          />
           <span className="font-bold tracking-tight text-light-text dark:text-dark-text text-base md:text-lg">
             Sanjeev Kushwah
           </span>
@@ -136,19 +146,32 @@ export default function Navbar() {
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${
+                `relative text-sm font-medium transition-colors ${
                   isActive
                     ? 'text-brand font-semibold'
                     : 'text-light-muted hover:text-brand dark:text-dark-muted dark:hover:text-brand'
                 }`
               }
             >
-              {item.label}
+              {({ isActive }) => (
+                <>
+                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeNavIndicator"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
           ))}
 
           {/* Resume CTA */}
-          <a
+          <motion.a
+            whileHover={{ scale: 1.04, y: -1 }}
+            whileTap={{ scale: 0.96 }}
             href="/resume.pdf"
             download="Sanjeev_Kushwah_Resume.pdf"
             target="_blank"
@@ -156,21 +179,24 @@ export default function Navbar() {
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand/10 border border-brand/25 text-brand text-xs font-semibold hover:bg-brand hover:text-white transition-all duration-150"
           >
             <FileText className="w-3.5 h-3.5" /> Resume
-          </a>
+          </motion.a>
 
           {/* Theme Switcher */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 15 }}
+            whileTap={{ scale: 0.9 }}
             onClick={toggleDark}
             aria-label="Toggle dark mode"
             className="p-2 rounded-lg text-light-muted hover:text-brand dark:text-dark-muted dark:hover:text-brand transition-colors"
           >
             {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
+          </motion.button>
         </div>
 
         {/* Mobile Controls */}
         <div className="flex md:hidden items-center gap-2">
-          <a
+          <motion.a
+            whileTap={{ scale: 0.95 }}
             href="/resume.pdf"
             download="Sanjeev_Kushwah_Resume.pdf"
             target="_blank"
@@ -178,56 +204,66 @@ export default function Navbar() {
             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-brand/10 border border-brand/20 text-brand text-xs font-semibold"
           >
             Resume
-          </a>
-          <button
+          </motion.a>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             onClick={toggleDark}
             aria-label="Toggle dark mode"
             className="p-2 rounded-lg text-light-muted dark:text-dark-muted"
           >
             {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle navigation menu"
             className="p-2 rounded-lg text-light-text dark:text-dark-text"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          </motion.button>
         </div>
       </nav>
 
       {/* Mobile Drawer */}
-      {open && (
-        <div className="md:hidden bg-light-bg dark:bg-dark-bg border-b border-light-border dark:border-dark-border shadow-xl">
-          <div className="px-6 py-4 flex flex-col gap-3">
-            <NavLink
-              to="/"
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `text-sm font-medium py-1 transition-colors ${
-                  isActive ? 'text-brand font-semibold' : 'text-light-muted dark:text-dark-muted'
-                }`
-              }
-            >
-              Home
-            </NavLink>
-            {navLinks.map((item) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="md:hidden bg-light-bg dark:bg-dark-bg border-b border-light-border dark:border-dark-border shadow-xl overflow-hidden"
+          >
+            <div className="px-6 py-4 flex flex-col gap-3">
               <NavLink
-                key={item.path}
-                to={item.path}
+                to="/"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
                   `text-sm font-medium py-1 transition-colors ${
-                    isActive ? 'text-brand font-semibold' : 'text-light-muted dark:text-dark-muted'
+                    isActive ? 'text-brand font-semibold' : 'text-light-text dark:text-dark-text'
                   }`
                 }
               >
-                {item.label}
+                Home
               </NavLink>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
+              {navLinks.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `text-sm font-medium py-1 transition-colors ${
+                      isActive ? 'text-brand font-semibold' : 'text-light-text dark:text-dark-text'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   )
 }

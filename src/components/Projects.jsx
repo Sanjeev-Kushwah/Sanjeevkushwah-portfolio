@@ -1,6 +1,7 @@
 import { projects } from '../data'
 import { SectionHeading } from './About'
-import { FolderGit2, Github, ExternalLink } from 'lucide-react'
+import { FolderGit2, Github } from 'lucide-react'
+import { motion } from 'motion/react'
 
 export default function Projects({ limit }) {
   const displayProjects = limit ? projects.slice(0, limit) : projects
@@ -10,10 +11,15 @@ export default function Projects({ limit }) {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading eyebrow="Projects" title="Featured Backend Projects" />
         <div className="mt-8 grid md:grid-cols-2 gap-6">
-          {displayProjects.map((p) => (
-            <article
+          {displayProjects.map((p, idx) => (
+            <motion.article
               key={p.title}
-              className="group p-6 rounded-2xl bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border hover:border-brand/40 transition-all duration-200 hover:-translate-y-1 shadow-xs flex flex-col justify-between"
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, scale: 1.015 }}
+              className="group p-6 rounded-2xl bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border hover:border-brand/40 transition-colors duration-200 shadow-xs flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-3 border-b border-light-border/60 dark:border-dark-border/60 pb-3">
@@ -24,7 +30,9 @@ export default function Projects({ limit }) {
                     <h3 className="text-lg font-bold text-light-text dark:text-dark-text">{p.title}</h3>
                   </div>
 
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.92 }}
                     href="https://github.com/Sanjeev-Kushwah"
                     target="_blank"
                     rel="noreferrer"
@@ -32,7 +40,7 @@ export default function Projects({ limit }) {
                     className="p-2 rounded-lg text-light-muted dark:text-dark-muted hover:text-brand hover:bg-brand/10 transition-colors"
                   >
                     <Github className="w-4 h-4" />
-                  </a>
+                  </motion.a>
                 </div>
 
                 <ul className="mt-4 space-y-2">
@@ -47,15 +55,16 @@ export default function Projects({ limit }) {
 
               <div className="mt-5 pt-3 border-t border-light-border/40 dark:border-dark-border/40 flex flex-wrap gap-1.5">
                 {p.stack.map((tech) => (
-                  <span
+                  <motion.span
                     key={tech}
+                    whileHover={{ scale: 1.05 }}
                     className="px-2.5 py-1 rounded-md text-xs font-semibold bg-light-card dark:bg-dark-card text-light-text dark:text-dark-text border border-light-border dark:border-dark-border"
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { education, certifications } from '../data'
 import { SectionHeading } from './About'
-import { GraduationCap, Award, ExternalLink, X, Eye } from 'lucide-react'
+import { GraduationCap, Award, X, Eye } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 
 export default function Education() {
   const [activeCertificate, setActiveCertificate] = useState(null)
@@ -18,10 +19,15 @@ export default function Education() {
             <h3 className="font-bold text-base text-light-text dark:text-dark-text">Education</h3>
           </div>
 
-          {education.map((e) => (
-            <div
+          {education.map((e, idx) => (
+            <motion.div
               key={e.degree}
-              className="p-5 rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-xs hover:border-brand/40 transition-all duration-200"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -3 }}
+              className="p-5 rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-xs hover:border-brand/40 transition-colors duration-200"
             >
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-light-border/60 dark:border-dark-border/60 pb-3">
                 <span className="px-2.5 py-0.5 rounded-full bg-brand/10 text-brand text-xs font-semibold">
@@ -44,7 +50,7 @@ export default function Education() {
               <p className="mt-3 text-xs text-light-text dark:text-dark-text leading-relaxed border-t border-light-border/40 dark:border-dark-border/40 pt-2.5">
                 {e.details}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -55,10 +61,15 @@ export default function Education() {
             <h3 className="font-bold text-base text-light-text dark:text-dark-text">Certifications</h3>
           </div>
 
-          {certifications.map((c) => (
-            <div
+          {certifications.map((c, idx) => (
+            <motion.div
               key={c.title}
-              className="p-5 rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-xs hover:border-brand/40 transition-all duration-200"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -3 }}
+              className="p-5 rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-xs hover:border-brand/40 transition-colors duration-200"
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
@@ -77,7 +88,9 @@ export default function Education() {
               {/* Certificate Image Preview */}
               {c.image && (
                 <div className="mt-4 pt-3 border-t border-light-border/40 dark:border-dark-border/40">
-                  <div
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setActiveCertificate(c.image)}
                     className="relative group cursor-pointer overflow-hidden rounded-xl border border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg"
                   >
@@ -89,45 +102,54 @@ export default function Education() {
                     <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 text-white text-xs font-semibold">
                       <Eye className="w-4 h-4" /> Click to View Certificate
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Certificate Modal Lightbox */}
-      {activeCertificate && (
-        <div
-          onClick={() => setActiveCertificate(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl w-full bg-light-card dark:bg-dark-card rounded-2xl overflow-hidden shadow-2xl border border-light-border dark:border-dark-border"
+      <AnimatePresence>
+        {activeCertificate && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveCertificate(null)}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
           >
-            <div className="flex items-center justify-between p-4 border-b border-light-border dark:border-dark-border">
-              <p className="text-sm font-bold text-light-text dark:text-dark-text">
-                Alpha – Data Structures & Algorithms with Java (Apna College)
-              </p>
-              <button
-                onClick={() => setActiveCertificate(null)}
-                className="p-1.5 rounded-lg text-light-muted hover:text-brand dark:text-dark-muted dark:hover:text-brand transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="p-4 bg-black/10 flex justify-center">
-              <img
-                src={activeCertificate}
-                alt="Certificate of Completion"
-                className="max-h-[75vh] w-auto object-contain rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.93, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.93, y: 15 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-light-card dark:bg-dark-card rounded-2xl overflow-hidden shadow-2xl border border-light-border dark:border-dark-border"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-light-border dark:border-dark-border">
+                <p className="text-sm font-bold text-light-text dark:text-dark-text">
+                  Alpha – Data Structures & Algorithms with Java (Apna College)
+                </p>
+                <button
+                  onClick={() => setActiveCertificate(null)}
+                  className="p-1.5 rounded-lg text-light-muted hover:text-brand dark:text-dark-muted dark:hover:text-brand transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-4 bg-black/10 flex justify-center">
+                <img
+                  src={activeCertificate}
+                  alt="Certificate of Completion"
+                  className="max-h-[75vh] w-auto object-contain rounded-lg shadow-lg"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

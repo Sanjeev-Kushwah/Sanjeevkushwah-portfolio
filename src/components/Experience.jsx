@@ -1,6 +1,7 @@
 import { experience } from '../data'
 import { SectionHeading } from './About'
 import { Briefcase, MapPin } from 'lucide-react'
+import { motion } from 'motion/react'
 
 export default function Experience() {
   return (
@@ -10,9 +11,22 @@ export default function Experience() {
         <div className="absolute left-3.5 md:left-4.5 top-2 bottom-2 w-px bg-light-border dark:bg-dark-border" />
         <div className="space-y-6">
           {experience.map((job) => (
-            <div key={job.role + job.company} className="relative pl-10 md:pl-12">
-              <span className="absolute left-1.5 md:left-2.5 top-2.5 w-4 h-4 rounded-full bg-brand ring-4 ring-light-bg dark:ring-dark-bg" />
-              <div className="p-5 md:p-7 rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-xs">
+            <motion.div
+              key={job.role + job.company}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="relative pl-10 md:pl-12"
+            >
+              <motion.span
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="absolute left-1.5 md:left-2.5 top-2.5 w-4 h-4 rounded-full bg-brand ring-4 ring-light-bg dark:ring-dark-bg"
+              />
+              <div className="p-5 md:p-7 rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-xs hover:border-brand/40 transition-colors duration-200">
                 <div className="flex flex-wrap items-start justify-between gap-2 border-b border-light-border/60 dark:border-dark-border/60 pb-3">
                   <div>
                     <h3 className="text-lg md:text-xl font-bold text-light-text dark:text-dark-text">{job.role}</h3>
@@ -31,14 +45,21 @@ export default function Experience() {
                 </div>
                 <ul className="mt-4 space-y-2.5">
                   {job.points.map((pt, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-light-text dark:text-dark-text leading-relaxed">
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.05 }}
+                      className="flex items-start gap-2.5 text-sm text-light-text dark:text-dark-text leading-relaxed"
+                    >
                       <span className="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-brand" />
                       <span>{pt}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
